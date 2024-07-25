@@ -1,0 +1,16 @@
+name: Backend CI/CD Workflow
+
+on:
+  push:
+    branches: [ "main" ]
+jobs:
+  deploy:
+    needs: build-and-test
+    runs-on: self-hosted
+
+    steps:
+      - name: Pull Image And Restart Container
+        run: |
+          echo "Current User: $(whoami)"
+          echo "Current User ID: $(id -u)"
+          echo "Current User Group: $(id -gn)"
